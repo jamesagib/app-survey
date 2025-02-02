@@ -26,7 +26,7 @@ SurveyKit makes it easy to create professional-looking surveys with a modern des
 Add SurveyKit to your project through Xcode:
 
 1. File > Add Packages
-2. Enter package URL: `[Your Repository URL]`
+2. Enter package URL: ```https://github.com/Sedlacek-Solutions/SurveyKit.git```
 3. Select version requirements
 4. Click Add Package
 
