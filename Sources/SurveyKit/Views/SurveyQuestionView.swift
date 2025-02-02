@@ -23,28 +23,34 @@ struct SurveyQuestionView {
     /// Creates a binding for tracking the selection state of an answer.
     /// - Parameter answer: The answer string to create a binding for.
     /// - Returns: A binding that manages the selection state of the answer.
-    func binding(for answer: String) -> Binding<Bool> {
+    private func binding(for answer: String) -> Binding<Bool> {
         .init(
             get: { answers.contains(answer) },
             set: { _ in
                 if !question.isMultipleChoice && !answers.contains(answer) {
                     answers.removeAll()
+                    otherText = ""
                 }
                 answers.toggle(answer)
             }
         )
     }
 
-    func otherTextChanged(oldText: String, newText: String) {
+    private func otherTextChanged(oldText: String, newText: String) {
         answers.remove(oldText)
         guard !newText.isEmpty else { return }
+
+        if !question.isMultipleChoice {
+            answers.removeAll()
+        }
+
         answers.insert(newText)
     }
 
     /// Resets the 'other' text field based on the current answers.
     /// If there's an answer that's not in the predefined answers list,
     /// it will be set as the other text. Otherwise, other text will be cleared.
-    func resetOtherText() {
+    private func resetOtherText() {
         guard let otherAnswer = answers.first(where: { answer in
             !question.answers.contains(answer)
         }) else {
