@@ -76,3 +76,47 @@ struct ContentView: View {
     }
 }
 ```
+
+### Skip Button Example
+
+```swift
+import SurveyKit
+import SwiftUI
+
+@MainActor
+struct ContentScreen {
+    private func skipAction() {
+        // TODO: skip the survey
+    }
+}
+
+extension ContentScreen: View {
+    var body: some View {
+        NavigationStack {
+            SurveyFlow(questions: .mock())
+                .toolbar(content: toolbarContent)
+        }
+    }
+
+    @ToolbarContentBuilder
+    private func toolbarContent() -> some ToolbarContent {
+        ToolbarItem(
+            placement: .confirmationAction,
+            content: skipButton
+        )
+    }
+
+    private func skipButton() -> some View {
+        Button(.skip, action: skipAction)
+    }
+}
+
+@MainActor
+extension LocalizedStringKey {
+    static let skip = LocalizedStringKey("Skip")
+}
+
+#Preview {
+    ContentScreen()
+}
+```
