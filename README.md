@@ -1,3 +1,5 @@
+![SurveyKit](https://github.com/user-attachments/assets/cba9fc77-c42c-4c9e-96c9-de7c6dabb2dd)
+
 # SurveyKit
 
 A Swift package that provides an elegant and customizable survey interface for iOS applications using SwiftUI. <br>
