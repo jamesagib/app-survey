@@ -5,7 +5,6 @@ struct SurveyQuestionView {
     private let question: SurveyQuestion
     @Binding private var answers: Set<String>
     @State private var otherText: String = ""
-    let customFont: String // Added custom font property
 
     init(
         question: SurveyQuestion,
@@ -14,7 +13,6 @@ struct SurveyQuestionView {
     ) {
         self.question = question
         self._answers = answers
-        self.customFont = customFont
     }
 
     private func binding(for answer: String) -> Binding<Bool> {
@@ -63,7 +61,7 @@ extension SurveyQuestionView: View {
 
     private var titleView: some View {
         Text(question.title)
-            .font(.custom(customFont, size: 18).weight(.semibold)) // Applied custom font
+            .font(.custom("InstrumentSerif-Regular", size: 18).weight(.semibold)) // Applied custom font
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.vertical, 24)
     }
@@ -72,7 +70,7 @@ extension SurveyQuestionView: View {
     private var selectAllThatApplyView: some View {
         if question.isMultipleChoice {
             Text(.selectAllThatApply)
-                .font(.custom(customFont, size: 32).weight(.medium)) // Applied custom font
+                .font(.custom("InstrumentSerif-Regular", size: 32).weight(.medium)) // Applied custom font
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
